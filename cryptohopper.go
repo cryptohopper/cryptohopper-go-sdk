@@ -29,7 +29,7 @@ import (
 )
 
 // Version is the SDK's semver tag (kept in sync with the latest `v*` git tag).
-const Version = "0.1.0-alpha.1"
+const Version = "0.2.0-alpha.1"
 
 const (
 	defaultBaseURL    = "https://api.cryptohopper.com/v1"
@@ -48,12 +48,16 @@ type Client struct {
 	maxRetries int
 
 	// Resources.
-	User     *UserAPI
-	Hoppers  *HoppersAPI
-	Exchange *ExchangeAPI
-	Strategy *StrategyAPI
-	Backtest *BacktestAPI
-	Market   *MarketAPI
+	User        *UserAPI
+	Hoppers     *HoppersAPI
+	Exchange    *ExchangeAPI
+	Strategy    *StrategyAPI
+	Backtest    *BacktestAPI
+	Market      *MarketAPI
+	Signals     *SignalsAPI
+	Arbitrage   *ArbitrageAPI
+	MarketMaker *MarketMakerAPI
+	Template    *TemplateAPI
 }
 
 // ClientOption configures the Client at construction time.
@@ -129,6 +133,10 @@ func NewClient(apiKey string, opts ...ClientOption) (*Client, error) {
 	c.Strategy = &StrategyAPI{client: c}
 	c.Backtest = &BacktestAPI{client: c}
 	c.Market = &MarketAPI{client: c}
+	c.Signals = &SignalsAPI{client: c}
+	c.Arbitrage = &ArbitrageAPI{client: c}
+	c.MarketMaker = &MarketMakerAPI{client: c}
+	c.Template = &TemplateAPI{client: c}
 
 	return c, nil
 }
