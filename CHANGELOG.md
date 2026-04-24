@@ -3,7 +3,17 @@
 All notable changes to `github.com/cryptohopper/cryptohopper-go-sdk` are documented in this file.
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## v0.2.0-alpha.1 — Unreleased
+## v0.3.0-alpha.1 — Unreleased
+
+Adds four more API domains: `AI`, `Platform`, `Chart`, `Subscription`.
+
+### Added
+- **`AI`** — `List`, `Get`, `AvailableModels`, `GetCredits`, `CreditInvoices`, `CreditTransactions`, `BuyCredits`, `LLMAnalyzeOptions`, `LLMAnalyze`, `LLMAnalyzeResults`, `LLMResults`.
+- **`Platform`** — `LatestBlog`, `Documentation`, `PromoBar`, `SearchDocumentation`, `Countries`, `CountryAllowlist`, `IPCountry`, `Languages`, `BotTypes` (all public).
+- **`Chart`** — `List`, `Get`, `Save`, `Delete`, `ShareSave`, `ShareGet`.
+- **`Subscription`** — `Hopper`, `Get`, `Plans`, `Remap`, `Assign`, `GetCredits`, `OrderSub`, `StopSubscription`.
+
+## v0.2.0-alpha.1 — 2026-04-24
 
 Adds four more API domains: `Signals`, `Arbitrage`, `MarketMaker`, `Template`.
 
