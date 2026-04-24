@@ -1,13 +1,19 @@
 # cryptohopper-go-sdk
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/cryptohopper/cryptohopper-go-sdk.svg)](https://pkg.go.dev/github.com/cryptohopper/cryptohopper-go-sdk)
+[![Go Report Card](https://goreportcard.com/badge/github.com/cryptohopper/cryptohopper-go-sdk)](https://goreportcard.com/report/github.com/cryptohopper/cryptohopper-go-sdk)
+[![CI](https://github.com/cryptohopper/cryptohopper-go-sdk/actions/workflows/ci.yml/badge.svg)](https://github.com/cryptohopper/cryptohopper-go-sdk/actions/workflows/ci.yml)
+[![Go version](https://img.shields.io/github/go-mod/go-version/cryptohopper/cryptohopper-go-sdk?logo=go&logoColor=white)](go.mod)
+[![License: MIT](https://img.shields.io/github/license/cryptohopper/cryptohopper-go-sdk?color=blue)](LICENSE)
+
 Official Go SDK for the [Cryptohopper](https://www.cryptohopper.com) API.
 
-> **Status: v0.1.0-alpha.1** — early access. Covers six core domains: `User`, `Hoppers`, `Exchange`, `Strategy`, `Backtest`, `Market`.
+> **Status: v0.4.0-alpha.1** — full coverage of all 18 public API domains: `User`, `Hoppers`, `Exchange`, `Strategy`, `Backtest`, `Market`, `Signals`, `Arbitrage`, `MarketMaker`, `Template`, `AI`, `Platform`, `Chart`, `Subscription`, `Social`, `Tournaments`, `Webhooks`, `App`.
 
 ## Install
 
 ```bash
-go get github.com/cryptohopper/cryptohopper-go-sdk@v0.1.0-alpha.1
+go get github.com/cryptohopper/cryptohopper-go-sdk@latest
 ```
 
 Requires Go 1.22+.
