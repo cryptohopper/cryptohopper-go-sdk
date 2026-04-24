@@ -3,7 +3,17 @@
 All notable changes to `github.com/cryptohopper/cryptohopper-go-sdk` are documented in this file.
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## v0.3.0-alpha.1 — Unreleased
+## v0.4.0-alpha.1 — Unreleased
+
+Adds four more API domains: `Social`, `Tournaments`, `Webhooks`, `App`. Final A-wave — all 14 remaining public domains now covered.
+
+### Added
+- **`Social`** (27 methods) — profiles, feed, trends, search, notifications, conversations/messages, posts, comments, media, follows, likes/reposts, moderation.
+- **`Tournaments`** (11 methods) — `List`, `Active`, `Get`, `Search`, `Trades`, `Stats`, `Activity`, `Leaderboard`, `TournamentLeaderboard`, `Join`, `Leave`.
+- **`Webhooks`** (2 methods) — developer webhook registration (`/api/webhook_*`).
+- **`App`** (2 methods) — mobile app store `Receipt` + `InAppPurchase`.
+
+## v0.3.0-alpha.1 — 2026-04-24
 
 Adds four more API domains: `AI`, `Platform`, `Chart`, `Subscription`.
 

@@ -29,7 +29,7 @@ import (
 )
 
 // Version is the SDK's semver tag (kept in sync with the latest `v*` git tag).
-const Version = "0.3.0-alpha.1"
+const Version = "0.4.0-alpha.1"
 
 const (
 	defaultBaseURL    = "https://api.cryptohopper.com/v1"
@@ -62,6 +62,10 @@ type Client struct {
 	Platform     *PlatformAPI
 	Chart        *ChartAPI
 	Subscription *SubscriptionAPI
+	Social       *SocialAPI
+	Tournaments  *TournamentsAPI
+	Webhooks     *WebhooksAPI
+	App          *AppAPI
 }
 
 // ClientOption configures the Client at construction time.
@@ -145,6 +149,10 @@ func NewClient(apiKey string, opts ...ClientOption) (*Client, error) {
 	c.Platform = &PlatformAPI{client: c}
 	c.Chart = &ChartAPI{client: c}
 	c.Subscription = &SubscriptionAPI{client: c}
+	c.Social = &SocialAPI{client: c}
+	c.Tournaments = &TournamentsAPI{client: c}
+	c.Webhooks = &WebhooksAPI{client: c}
+	c.App = &AppAPI{client: c}
 
 	return c, nil
 }
