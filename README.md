@@ -10,6 +10,8 @@ Official Go SDK for the [Cryptohopper](https://www.cryptohopper.com) API.
 
 > **Status: v0.4.0-alpha.1** — full coverage of all 18 public API domains: `User`, `Hoppers`, `Exchange`, `Strategy`, `Backtest`, `Market`, `Signals`, `Arbitrage`, `MarketMaker`, `Template`, `AI`, `Platform`, `Chart`, `Subscription`, `Social`, `Tournaments`, `Webhooks`, `App`.
 
+**Deeper docs:** [Getting Started](docs/Getting-Started.md) · [Authentication](docs/Authentication.md) · [Error Handling](docs/Error-Handling.md) · [Rate Limits](docs/Rate-Limits.md)
+
 ## Install
 
 ```bash
