@@ -232,10 +232,20 @@ func (c *Client) request(ctx context.Context, method, path string, query url.Val
 			if wait <= 0 {
 				wait = time.Duration(1<<attempt) * time.Second
 			}
+			// time.NewTimer + Stop, not time.After: if ctx fires first,
+			// time.After leaves a timer running until `wait` elapses,
+			// holding memory + a runtime ticker entry. Stop releases it
+			// immediately.
+			timer := time.NewTimer(wait)
 			select {
 			case <-ctx.Done():
-				return &Error{Code: "NETWORK_ERROR", Message: "context cancelled while waiting to retry: " + ctx.Err().Error()}
-			case <-time.After(wait):
+				timer.Stop()
+				code := "NETWORK_ERROR"
+				if errors.Is(ctx.Err(), context.DeadlineExceeded) {
+					code = "TIMEOUT"
+				}
+				return &Error{Code: code, Message: "context " + ctx.Err().Error() + " while waiting to retry"}
+			case <-timer.C:
 			}
 			attempt++
 			continue
