@@ -29,7 +29,7 @@ import (
 )
 
 // Version is the SDK's semver tag (kept in sync with the latest `v*` git tag).
-const Version = "0.4.0-alpha.1"
+const Version = "0.4.0-alpha.2"
 
 const (
 	defaultBaseURL    = "https://api.cryptohopper.com/v1"
@@ -277,7 +277,10 @@ func (c *Client) doRequest(ctx context.Context, method, path string, query url.V
 	if err != nil {
 		return &Error{Code: "UNKNOWN", Message: "failed to build request: " + err.Error()}
 	}
-	req.Header.Set("Authorization", "Bearer "+c.apiKey)
+	// Cryptohopper Public API v1 uses `access-token: <token>`, not the
+	// OAuth2-conventional `Authorization: Bearer <token>`. The gateway in
+	// front of the API rejects Bearer with a SigV4 parse error.
+	req.Header.Set("access-token", c.apiKey)
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", c.userAgent)
 	if c.appKey != "" {

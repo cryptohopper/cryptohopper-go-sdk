@@ -3,7 +3,15 @@
 All notable changes to `github.com/cryptohopper/cryptohopper-go-sdk` are documented in this file.
 The format is loosely based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## v0.4.0-alpha.1 — Unreleased
+## v0.4.0-alpha.2 — Unreleased
+
+### Fixed
+- **Critical: every authenticated request was rejected by the API gateway.** The transport sent `Authorization: Bearer <token>`, which the AWS API Gateway in front of `api.cryptohopper.com/v1/*` rejects (`405 Missing Authentication Token`). Cryptohopper's Public API v1 uses `access-token: <token>` — confirmed by the official [API documentation](https://www.cryptohopper.com/api-documentation/how-the-api-works) and the legacy iOS/Android SDKs. Switching to send `access-token` instead. The `Authorization` header is no longer set.
+
+### Compatibility
+No public-API change. Resource methods (`ch.User.Get(ctx)`, `ch.Hoppers.List(ctx, nil)`, etc.) keep their signatures. Only the wire-level header changes.
+
+## v0.4.0-alpha.1 — 2026-04-24
 
 Adds four more API domains: `Social`, `Tournaments`, `Webhooks`, `App`. Final A-wave — all 14 remaining public domains now covered.
 

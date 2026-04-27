@@ -32,10 +32,11 @@ func TestNewClient_RequiresAPIKey(t *testing.T) {
 	}
 }
 
-func TestRequest_BearerAndUserAgent(t *testing.T) {
-	var seenAuth, seenUA, seenAccept, seenAppKey string
+func TestRequest_AccessTokenAndUserAgent(t *testing.T) {
+	var seenAuth, seenAccessToken, seenUA, seenAccept, seenAppKey string
 	c, _ := newTestClient(t, func(w http.ResponseWriter, r *http.Request) {
 		seenAuth = r.Header.Get("Authorization")
+		seenAccessToken = r.Header.Get("access-token")
 		seenUA = r.Header.Get("User-Agent")
 		seenAccept = r.Header.Get("Accept")
 		seenAppKey = r.Header.Get("x-api-app-key")
@@ -48,8 +49,11 @@ func TestRequest_BearerAndUserAgent(t *testing.T) {
 	if err := c.request(context.Background(), "GET", "/user/get", nil, nil, &out); err != nil {
 		t.Fatalf("request: %v", err)
 	}
-	if seenAuth != "Bearer ch_test" {
-		t.Errorf("Authorization: got %q, want Bearer ch_test", seenAuth)
+	if seenAccessToken != "ch_test" {
+		t.Errorf("access-token: got %q, want ch_test", seenAccessToken)
+	}
+	if seenAuth != "" {
+		t.Errorf("Authorization: got %q, want empty (Cryptohopper v1 uses access-token, not Bearer)", seenAuth)
 	}
 	if !strings.HasPrefix(seenUA, "cryptohopper-go-sdk/") {
 		t.Errorf("User-Agent: got %q", seenUA)
